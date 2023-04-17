@@ -1,7 +1,7 @@
 {
   "name": "wordwise",
   "version": "1.0.0",
-  "description": "",
+  "description": "A generic dictionary application",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
