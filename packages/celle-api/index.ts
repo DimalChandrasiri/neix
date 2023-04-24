@@ -1,5 +1,6 @@
 import express,{ Express, Request, Response } from "express";
 import multer from "multer";
+import SwaggerParser from "@apidevtools/swagger-parser";
 
 const storage = multer.diskStorage({
     destination: (
@@ -27,11 +28,20 @@ app.get('/',(req: Request, res: Response) => {
 });
 
 app.post('/yml', (req, res) => {
-    upload(req, res, (err) => {
+    upload(req, res, async (err) => {
         if (err) {
             return res.end("Error uploading file");
         }
-        res.end("File is uploaded")
+        if (req.file) {
+            try {
+                let api = await SwaggerParser.validate(Buffer.from(req.file.buffer).toString());
+                console.log("API name: %s, Version: %s", api.info.title, api.info.version);
+              }
+              catch(err) {
+                console.error(err);
+            }
+            res.end("File is uploaded")
+        }
     })
 })
 
