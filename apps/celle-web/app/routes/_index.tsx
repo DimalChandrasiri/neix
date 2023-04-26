@@ -1,16 +1,27 @@
 import type { V2_MetaFunction } from "@remix-run/node";
+import { LinksFunction } from "@remix-run/react/dist/routeModules";
 
 export const meta: V2_MetaFunction = () => {
-  return [{ title: "Celle - OpenAPI Visualizer" }];
+    return [{ title: "Celle - OpenAPI Visualizer" }];
+};
+
+export const Links: LinksFunction = () => {
+    return [
+        {
+            rel: "preload",
+            href: "/images/banner.jpg",
+            as: "image",
+        },
+    ];
 };
 
 export default function Index() {
-  return (
-    <div 
-      className="text-3xl font-bold underline" 
-      style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.4" }}
-    >
-      <h1>Welcome to Celle - OpenAPI Visualizer</h1>
-    </div>
-  );
+    return (
+        <>
+            <div className="mx-auto ">
+
+            </div>
+        </>
+
+    );
 }
